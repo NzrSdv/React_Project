@@ -17,9 +17,13 @@ ul {
   list-style: none;
 }
 .container {
-  width: 80dvw;
+  width: 60dvw;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+h2.title{
+    font-weight: 600;
 }
 /* body{
     width: 100dvw;

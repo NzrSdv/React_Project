@@ -1,0 +1,8 @@
+.Layout{
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-content: space-between;
+    gap:50px;
+    width: 100%;
+}

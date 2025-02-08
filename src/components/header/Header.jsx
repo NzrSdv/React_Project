@@ -119,7 +119,6 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <script>{console.log(window.innerWidth)}</script>
     </header>
   );
 }
