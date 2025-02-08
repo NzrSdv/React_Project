@@ -2,10 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./Header.module.css";
-import Pizza from "../../../public/pizza_logo_dark.svg";
+import Pizza from "../../../public/pizza_logo_accent.svg";
+import SignUp from "../../../public/person_fill.svg";
+import SignIn from "../../../public/person_nfill.svg";
+import Profile from "../../../public/profile_fill.svg"
+import Cart from "../../../public/cart_icon.svg";
+import Menu from "../../../public/menu_icon.svg";
+
 import { useDispatch, useSelector } from "react-redux";
 export default function Header() {
-  const dispatch = useDispatch();
   const isAuth = useSelector((state) => state.Auth.isAuth);
   return (
     <header className={styles.Header}>
@@ -27,17 +32,50 @@ export default function Header() {
               <>
                 <li>
                   <Link className={styles.Navigation__Link} href="/">
-                    Меню
+                    <p>Меню</p>
+                    <Image
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height:"auto"
+
+                      }}
+                      alt="Menu"
+                      src={Menu}
+                      className={styles.mobileIcon}
+                    ></Image>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles.Navigation__Link} href="/">
-                    Корзина
+                    <p>Корзина</p>
+                    <Image
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height:"auto"
+
+                      }}
+                      alt="Cart"
+                      src={Cart}
+                      className={styles.mobileIcon}
+                    ></Image>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles.Navigation__Link} href="/">
-                    Профиль
+                    <p>Профиль</p>
+                    <Image
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height:"auto"
+
+                      }}
+                      alt="Sign in"
+                      src={Profile}
+                      className={styles.mobileIcon}
+                    ></Image>
                   </Link>
                 </li>
               </>
@@ -46,12 +84,34 @@ export default function Header() {
               <>
                 <li>
                   <Link className={styles.Navigation__Link} href="/">
-                    Вход
+                    <p>Вход</p>
+                    <Image
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height:"auto"
+
+                      }}
+                      alt="Sign in"
+                      src={SignIn}
+                      className={styles.mobileIcon}
+                    ></Image>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles.Navigation__Link} href="/">
-                    Регистрация
+                    <p>Регистрация</p>
+                    <Image
+                      sizes="100vw"
+                      style={{
+                        width: "100%",
+                        height:"auto"
+                      }}
+                      alt="Sign up"
+                      src={SignUp}
+                      className={styles.mobileIcon}
+                    ></Image>
+                    
                   </Link>
                 </li>
               </>
@@ -59,7 +119,6 @@ export default function Header() {
           </ul>
         </nav>
       </div>
-      <script>{console.log(window.innerWidth)}</script>
     </header>
   );
 }

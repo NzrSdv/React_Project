@@ -1,0 +1,22 @@
+:root{
+    @media screen and (max-width:1920px) {
+        .wrapper_content{
+            max-width: 1920px;
+        }
+    }
+    @media screen and (max-width:1200px) {
+        .wrapper_content{
+            max-width: 1200px;
+        }
+    }
+    @media screen and (max-width:768px) {
+        .wrapper_content{
+            max-width: 768px;
+        }
+    }
+    @media screen and (max-width:540px) {
+        .wrapper_content{
+            max-width: 540px;
+        }
+    }
+}

@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images:{
-        domains:['fonts.googleapis.com']
+        remotePatterns:[
+            {protocol:"https",hostname:"goldbelly.imgix.net"},
+            {protocol:"https",hostname:"encrypted-tbn0.gstatic.com"} 
+        ]
     }
 };
 
