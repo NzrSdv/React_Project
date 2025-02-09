@@ -36,16 +36,21 @@
     align-items: center;
 }
 
-@media screen and (max) {
+@media screen and (max-width:540px) {
+
     .Card{
-        padding:10px 5px;
-        max-width: 250px;
+        padding:10px 15px;
+        max-width: 280px;
     }
     .CardImage{
-        width: 50%;
+        width: 70%;
     }
     .CardTitle{
         text-align:center;    
         font-weight: 600;
+    }
+    .CardRow{
+        gap:20px;
+        font-size: 13px;
     }
 }

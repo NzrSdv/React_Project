@@ -99,7 +99,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={styles.Navigation__Link} href="/">
+                  <Link className={styles.Navigation__Link} href="/signUp">
                     <p>Регистрация</p>
                     <Image
                       sizes="100vw"

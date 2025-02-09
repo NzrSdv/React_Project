@@ -21,8 +21,11 @@ ul {
   align-items: center;
   justify-content: center;
 }
-h2.title{
-    font-weight: 600;
+h2.title {
+  font-weight: 600;
+}
+input[type="password"]:not(:placeholder-shown) {
+  font-family: Verdana;
 }
 /* body{
     width: 100dvw;

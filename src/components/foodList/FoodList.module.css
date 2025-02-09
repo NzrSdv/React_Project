@@ -12,8 +12,9 @@
     }
 }
 
-@media screen and (max-width:520px) {
+@media screen and (max-width:540px) {
     .FoodList{
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
+        padding:0 10px;
     }
 }
