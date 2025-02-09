@@ -1,10 +1,21 @@
 "use client";
+import { useState } from "react";
+import { useSelector } from "react-redux";
+
 import Image from "next/image";
 import styles from "./FoodCard.module.css";
-import { useState } from "react";
+import ButtonAccent from "@/UI/Buttons/buttonAccent/ButtonAccent";
+
+import { useRouter } from "next/navigation";
+
 export default function FoodCard({ Food }) {
-  const id = Food.id;
+  const router = useRouter();
+
   const [imageError, setImageError] = useState(false);
+
+  const isAuth = useSelector((state) => state.Auth.isAuth);
+
+  const id = Food.id;
   return (
     <div className={styles.Card}>
       <div className={styles.CardImage}>
@@ -26,8 +37,15 @@ export default function FoodCard({ Food }) {
       </div>
       <h4 className={styles.CardTitle}>{Food.name}</h4>
       <p className={styles.CardDescription}>{Food.dsc}</p>
-      <div>
-        {Food.price}$ {Food.rate}
+      <div className={styles.CardRow}>
+        <ButtonAccent
+          onClick={() => {
+            router.push("/signIn");
+          }}
+        >
+          {Food.price}$
+        </ButtonAccent>
+        {Food.rate}⭐️
       </div>
     </div>
   );

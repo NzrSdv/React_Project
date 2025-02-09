@@ -11,7 +11,7 @@
     border-radius: 10px;
 }
 .CardImage{
-    width: 100% ;
+    width: 90% ;
     aspect-ratio: 1;
     height: auto;
     position: relative;
@@ -21,9 +21,31 @@
 }
 
 .CardTitle{
-    text-align:center;
-    color:red
+    text-align:center;    
+    font-weight: 600;
 }
 .CardDescription{
     text-align: center;
+    max-width: 150px;
+    font-size: small;
+}
+.CardRow{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max) {
+    .Card{
+        padding:10px 5px;
+        max-width: 250px;
+    }
+    .CardImage{
+        width: 50%;
+    }
+    .CardTitle{
+        text-align:center;    
+        font-weight: 600;
+    }
 }

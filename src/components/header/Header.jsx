@@ -9,7 +9,7 @@ import Profile from "../../../public/profile_fill.svg"
 import Cart from "../../../public/cart_icon.svg";
 import Menu from "../../../public/menu_icon.svg";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 export default function Header() {
   const isAuth = useSelector((state) => state.Auth.isAuth);
   return (
@@ -83,7 +83,7 @@ export default function Header() {
             {!isAuth && (
               <>
                 <li>
-                  <Link className={styles.Navigation__Link} href="/">
+                  <Link className={styles.Navigation__Link} href="/signIn">
                     <p>Вход</p>
                     <Image
                       sizes="100vw"
