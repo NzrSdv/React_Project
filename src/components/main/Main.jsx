@@ -7,13 +7,12 @@ import Loader from "@/UI/Loader/Loader";
 
 export default function Main() {
     const {data,error,isLoading} = useGetPizzasQuery("pizzas");
-    console.log(data,error,isLoading);
   return (
     <main className={styles.Main}>
       <section className={styles.Section}>
         <div className={`container ${styles.SectionContainer}`}>
             <h2 className="title">Menu</h2>
-            <div className="">
+            <div>
                 {!isLoading && <FoodList FoodList={data}></FoodList>}
                 {isLoading && <Loader></Loader>}
             </div>

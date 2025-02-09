@@ -63,7 +63,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={styles.Navigation__Link} href="/">
+                  <Link className={styles.Navigation__Link} href="/profile">
                     <p>Профиль</p>
                     <Image
                       sizes="100vw"
