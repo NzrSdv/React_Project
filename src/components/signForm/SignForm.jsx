@@ -1,15 +1,19 @@
 "use client";
 import ButtonAccent from "@/UI/Buttons/buttonAccent/ButtonAccent";
+import Link from "next/link";
 import styles from "./SignForm.module.css";
+
 import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAuth, setAuthUser } from "@/app/store/AuthSlice";
+
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { addUser } from "@/app/store/UserSlice";
 export default function SignForm() {
   const isAuth = useSelector((state) => state.Auth.isAuth);
   const AuthUser = useSelector((state) => state.Auth.AuthUser);
+  const Users = useSelector((state) => state.User.Users);
 
   const dispatch = useDispatch();
 
@@ -18,12 +22,20 @@ export default function SignForm() {
   function SignUp() {
     const newUser = { name: name, email: email, password: password };
     dispatch(setAuthUser(newUser));
-    localStorage.setItem("signedUser", newUser);
+    localStorage.setItem("signedUser", JSON.stringify(newUser));
     dispatch(toggleAuth());
+    dispatch(setAuthUser(newUser));
+    dispatch(addUser(newUser));
     router.push("/");
   }
-  function SignIn(){
-    
+  function SignIn() {
+    Users.forEach((user) => {
+      if (user.email == email && user.password == password) {
+        dispatch(toggleAuth());
+        dispatch(setAuthUser(user));
+        router.push("/");
+      }
+    });
   }
 
   const Page = usePathname();
@@ -55,7 +67,13 @@ export default function SignForm() {
               setPassword(e.target.value);
             }}
           />
-          <ButtonAccent onClick={() => {}}>Войти</ButtonAccent>
+          <ButtonAccent
+            onClick={() => {
+              SignIn();
+            }}
+          >
+            Войти
+          </ButtonAccent>
           <p>
             Нет аккаунт? <Link href="/signUp">Зарегистрироватся</Link>
           </p>
