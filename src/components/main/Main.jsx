@@ -2,20 +2,34 @@
 
 import { useGetPizzasQuery } from "@/app/store/ApiSlice";
 import FoodList from "../foodList/FoodList";
-import styles from "./Main.module.css"
+import styles from "./Main.module.css";
 import Loader from "@/UI/Loader/Loader";
+import { useSearchAndFilter } from "@/hooks/useSearchAndFilter";
+import { useState } from "react";
+import SearchFilter from "../searchFilter/SearchFilter";
 
 export default function Main() {
-    const {data,error,isLoading} = useGetPizzasQuery("pizzas");
+  const { data, error, isLoading } = useGetPizzasQuery("pizzas");
+  const [searchFood, setSearchFood] = useState("");
+  const [filterFood, setFilterFood] = useState("name");
+  const SAndF = useSearchAndFilter(searchFood, filterFood, data);
   return (
     <main className={styles.Main}>
       <section className={styles.Section}>
         <div className={`container ${styles.SectionContainer}`}>
+          <div className={styles.UpperRow}>
             <h2 className="title">Menu</h2>
-            <div>
-                {!isLoading && <FoodList FoodList={data}></FoodList>}
-                {isLoading && <Loader></Loader>}
-            </div>
+            <SearchFilter
+              searchFood={searchFood}
+              setSearchFood={setSearchFood}
+              setFilteredFood={setFilterFood}
+              FilterFood={filterFood}
+            />
+          </div>
+          <div>
+            {!isLoading && <FoodList FoodList={SAndF}></FoodList>}
+            {isLoading && <Loader></Loader>}
+          </div>
         </div>
       </section>
     </main>
