@@ -11,10 +11,43 @@
        justify-content: center;
 }
 .SectionContainer{
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap:40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,.2);
+}
+.UpperRow{
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.BottomSec{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media screen and (max-width:1920px) {
+    .SectionContainer{
+        width: 65dvw;
+
+        padding:60px 50px;
+    }
+}
+
+@media screen and (max-width:1200px) {
+    .SectionContainer{
+        width: 70dvw;
+        padding:30px 15px;
+    }
+}
+@media screen and (max-width:768px) {
+    .SectionContainer{
+        width: 80dvw;
+        padding:30px 10px;
+    }
 }

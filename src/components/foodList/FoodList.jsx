@@ -1,8 +1,14 @@
-'use client';
+"use client";
 import FoodCard from "../foodCard/FoodCard";
 import styles from "./FoodList.module.css";
-export default function FoodList({FoodList}) {
-  return <div className={styles.FoodList}>
-    {FoodList?.map(Food => (<FoodCard key={Food.id} Food={Food}/>))}
-  </div>;
+export default function FoodList({ FoodList }) {
+  return (
+    <div className={styles.FoodList}>
+      {FoodList?.length == 0 ? (
+        <h2 className={`title ${styles.title}`}>Not Foud</h2>
+      ) : (
+        FoodList?.map((Food) => <FoodCard key={Food.id} Food={Food} />)
+      )}
+    </div>
+  );
 }

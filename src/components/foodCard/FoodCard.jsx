@@ -1,21 +1,32 @@
 "use client";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Image from "next/image";
 import styles from "./FoodCard.module.css";
 import ButtonAccent from "@/UI/Buttons/buttonAccent/ButtonAccent";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { toggleCartWindow,setCartWindowProduct } from "@/app/store/VisualSlice";
 
 export default function FoodCard({ Food }) {
+  const dispatch = useDispatch();
   const router = useRouter();
+  const pathname = usePathname();
 
   const [imageError, setImageError] = useState(false);
 
   const isAuth = useSelector((state) => state.Auth.isAuth);
 
   const id = Food.id;
+
+  function setAddWindowProduct(Product){
+    dispatch(setCartWindowProduct(Product))
+  }
+
+  function showAddWindow(){
+    dispatch(toggleCartWindow())
+  }
   return (
     <div className={styles.Card}>
       <div className={styles.CardImage}>
@@ -38,14 +49,23 @@ export default function FoodCard({ Food }) {
       <h4 className={styles.CardTitle}>{Food.name}</h4>
       <p className={styles.CardDescription}>{Food.dsc}</p>
       <div className={styles.CardRow}>
+      {pathname.includes("cart") && Food.quantity} штук
         <ButtonAccent
           onClick={() => {
+           if(isAuth){
+            setAddWindowProduct(Food);
+              showAddWindow();
+           }
+           else{
             router.push("/signIn");
+           }
           }}
         >
-          {Food.price}$
+          {pathname.includes("cart") ? Math.round(Food.price * Food.quantity):Math.round(Food.price)} $
         </ButtonAccent>
-        {Food.rate}⭐️
+        
+
+          {Food.rate}⭐️
       </div>
     </div>
   );

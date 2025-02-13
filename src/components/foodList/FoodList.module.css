@@ -3,17 +3,24 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(auto-fit,1fr);
+    justify-content: center;
+    align-items: center;
     gap:30px;
 }
-
+.title{
+    margin:150px 0;
+    grid-area: 1/1/-1/-1;
+    text-align: center;
+}
 @media screen and (max-width:1200px) {
     .FoodList{
         grid-template-columns: repeat(2,1fr);
     }
 }
 
-@media screen and (max-width:520px) {
+@media screen and (max-width:540px) {
     .FoodList{
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
+        padding:0 10px;
     }
 }
