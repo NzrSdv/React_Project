@@ -26,9 +26,9 @@ export default function Main() {
               FilterFood={filterFood}
             />
           </div>
-          <div>
-            {!isLoading && <FoodList FoodList={SAndF}></FoodList>}
-            {isLoading && <Loader></Loader>}
+          <div className={styles.BottomSec}>
+            {!isLoading && <FoodList FoodList={SAndF}/>}
+            {isLoading && <Loader/>}
           </div>
         </div>
       </section>
