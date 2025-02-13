@@ -11,7 +11,7 @@
     border-radius: 10px;
 }
 .CardImage{
-    width: min(10dvw,90%) ;
+    width: max(15dvw,150px) ;
     aspect-ratio: 1;
     height: auto;
     position: relative;

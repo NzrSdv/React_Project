@@ -9,7 +9,8 @@ import { toggleAuth, setAuthUser } from "@/app/store/AuthSlice";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { addUser } from "@/app/store/UserSlice";
+import { addUser, setCart } from "@/app/store/UserSlice";
+import { addCartProduct } from "@/app/store/CartSlice";
 export default function SignForm() {
   const isAuth = useSelector((state) => state.Auth.isAuth);
   const AuthUser = useSelector((state) => state.Auth.AuthUser);
@@ -20,7 +21,7 @@ export default function SignForm() {
   const router = useRouter();
 
   function SignUp() {
-    const newUser = { name: name, email: email, password: password };
+    const newUser = { name: name, email: email, password: password, cart: [] };
     dispatch(setAuthUser(newUser));
     localStorage.setItem("signedUser", JSON.stringify(newUser));
     dispatch(toggleAuth());
@@ -33,6 +34,9 @@ export default function SignForm() {
       if (user.email == email && user.password == password) {
         dispatch(toggleAuth());
         dispatch(setAuthUser(user));
+        user.cart.forEach((product) => {
+          dispatch(addCartProduct(product));
+        });
         router.push("/");
       }
     });

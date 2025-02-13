@@ -48,6 +48,6 @@
 @media screen and (max-width:768px) {
     .SectionContainer{
         width: 80dvw;
-        padding:30px 0px;
+        padding:30px 10px;
     }
 }

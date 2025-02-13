@@ -47,7 +47,7 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link className={styles.Navigation__Link} href="/">
+                  <Link className={styles.Navigation__Link} href="/cart">
                     <p>Корзина</p>
                     <Image
                       sizes="100vw"

@@ -5,7 +5,8 @@ const initialState = {
     AuthUser:{
         name:"",
         email:"",
-        password:""
+        password:"",
+        cart:[]
     }
 }
 

@@ -1,23 +1,19 @@
-.ButtonAccent{
-    background-color: rgb(229,0,43);
+.ButtonGreen{
+    background-color: rgb(0, 229, 43);
     padding: 10px 20px;
     color:white;
     border-radius: 10px;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     text-align: center;
     font-weight: 600;
     font-size: 15px;
     transition: ease-in-out .15s;
 }
-
-.ButtonAccent:hover{
+.ButtonGreen:hover{
     transform: scale(1.1);
 }
 
 @media screen and (max-width:768px) {
- .ButtonAccent{
+ .ButtonGreen{
     font-size: 12px;
     padding:8px 15px;
  }   

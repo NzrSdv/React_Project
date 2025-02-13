@@ -1,11 +1,56 @@
-.CartWindow{
-    width: 100dvw;
-    height: 100dvh;
-    z-index: 2;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0,0,0,.2);
+.CartWindow {
+  width: 100dvw;
+  height: 100dvh;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.WhiteWindow {
+  background-color: #fff;
+  padding: 100px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  z-index: 3;
+}
+
+.ProductInfo{
+    display: flex;
+    justify-content: center;
+    gap:40px;
+    align-items: center;
+}
+.ProductImage {
+  width: 25dvw;
+  aspect-ratio: 1;
+  height: auto;
+  position: relative;
+  display: block;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ProductText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: large;
+    gap:20px;
+}
+.row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:30px;
 }
