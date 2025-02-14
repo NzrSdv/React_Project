@@ -7,26 +7,33 @@ import { usePathname } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleAuth, setAuthUser } from "@/app/store/AuthSlice";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { addUser, setCart } from "@/app/store/UserSlice";
+import { addUser } from "@/app/store/UserSlice";
 import { addCartProduct } from "@/app/store/CartSlice";
 export default function SignForm() {
-  const isAuth = useSelector((state) => state.Auth.isAuth);
   const AuthUser = useSelector((state) => state.Auth.AuthUser);
   const Users = useSelector((state) => state.User.Users);
 
   const dispatch = useDispatch();
 
   const router = useRouter();
+  useEffect(() => {
+    if(localStorage.getItem("allUsers")){
+      JSON.parse(localStorage.getItem("allUsers")).forEach((user) => {
+        dispatch(addUser(user))
+      })
+    }
+  },[])
 
   function SignUp() {
-    const newUser = { name: name, email: email, password: password, cart: [] };
+    const newUser = {id:Users.length, name: name, email: email, password: password, cart: [] };
     dispatch(setAuthUser(newUser));
     localStorage.setItem("signedUser", JSON.stringify(newUser));
     dispatch(toggleAuth());
     dispatch(setAuthUser(newUser));
     dispatch(addUser(newUser));
+    localStorage.setItem("allUsers",JSON.stringify(Users))
     router.push("/");
   }
   function SignIn() {

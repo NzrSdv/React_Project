@@ -3,21 +3,11 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   Users: [
     {
+      id:0,
       name: "admin",
       email: "admin@gmail.com",
       password: "admin",
-      cart: [
-        {
-          country: "Chicago, IL",
-          dsc: "Choose Your Own Thin Crust Pizza - 4 Pack",
-          id: "23699-choose-your-own-thin-crust-pizza-4-pack",
-          img: "https://goldbelly.imgix.net/uploads/showcase_media_asset/image/89781/choose-your-own-thin-crust-pizza-4-pack.b928a2008eab50c65dc87e59b5952190.jpg?ixlib=react-9.0.2&auto=format&ar=1%3A1",
-          name: "Bartolini’s",
-          price: 139,
-          quantity: 6,
-          rate: 4,
-        },
-      ],
+      cart: [],
     },
   ],
 };

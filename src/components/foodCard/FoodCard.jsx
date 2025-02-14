@@ -8,6 +8,8 @@ import ButtonAccent from "@/UI/Buttons/buttonAccent/ButtonAccent";
 
 import { usePathname, useRouter } from "next/navigation";
 import { toggleCartWindow,setCartWindowProduct } from "@/app/store/VisualSlice";
+import ButtonGreen from "@/UI/Buttons/buttonGreen/ButtonGreen";
+import { removeCartProduct, updateCartTotal } from "@/app/store/CartSlice";
 
 export default function FoodCard({ Food }) {
   const dispatch = useDispatch();
@@ -48,9 +50,23 @@ export default function FoodCard({ Food }) {
       </div>
       <h4 className={styles.CardTitle}>{Food.name}</h4>
       <p className={styles.CardDescription}>{Food.dsc}</p>
+      {pathname.includes("cart") && <>{Food.quantity} штук</>}
       <div className={styles.CardRow}>
-      {pathname.includes("cart") && Food.quantity} штук
-        <ButtonAccent
+        {pathname.includes("cart") ?
+        <ButtonGreen
+        
+        onClick={() => {
+          if(isAuth){
+           dispatch(removeCartProduct(Food.id))
+           dispatch(updateCartTotal())
+          }
+          else{
+           router.push("/signIn");
+          }
+         }}>
+{Math.round(Food.price * Food.quantity)} $
+        </ButtonGreen>
+        :<ButtonAccent
           onClick={() => {
            if(isAuth){
             setAddWindowProduct(Food);
@@ -61,8 +77,8 @@ export default function FoodCard({ Food }) {
            }
           }}
         >
-          {pathname.includes("cart") ? Math.round(Food.price * Food.quantity):Math.round(Food.price)} $
-        </ButtonAccent>
+          {Math.round(Food.price)} $
+        </ButtonAccent>}
         
 
           {Food.rate}⭐️
