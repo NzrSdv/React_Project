@@ -3,6 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
     isAuth:false,
     AuthUser:{
+        id:-2,
         name:"",
         email:"",
         password:"",
