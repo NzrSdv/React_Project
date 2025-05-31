@@ -8,8 +8,8 @@ const store = configureStore({
   reducer: {
     Auth: AuthReducer,
     User: UserRedcuer,
-    Visual:VisualReducer,
-    Cart:CartReducer,
+    Visual: VisualReducer,
+    Cart: CartReducer,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>

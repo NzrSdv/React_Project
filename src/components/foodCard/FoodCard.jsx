@@ -7,7 +7,10 @@ import styles from "./FoodCard.module.css";
 import ButtonAccent from "@/UI/Buttons/buttonAccent/ButtonAccent";
 
 import { usePathname, useRouter } from "next/navigation";
-import { toggleCartWindow,setCartWindowProduct } from "@/app/store/VisualSlice";
+import {
+  toggleCartWindow,
+  setCartWindowProduct,
+} from "@/app/store/VisualSlice";
 import ButtonGreen from "@/UI/Buttons/buttonGreen/ButtonGreen";
 import { removeCartProduct, updateCartTotal } from "@/app/store/CartSlice";
 
@@ -20,14 +23,12 @@ export default function FoodCard({ Food }) {
 
   const isAuth = useSelector((state) => state.Auth.isAuth);
 
-  const id = Food.id;
-
-  function setAddWindowProduct(Product){
-    dispatch(setCartWindowProduct(Product))
+  function setAddWindowProduct(Product) {
+    dispatch(setCartWindowProduct(Product));
   }
 
-  function showAddWindow(){
-    dispatch(toggleCartWindow())
+  function showAddWindow() {
+    dispatch(toggleCartWindow());
   }
   return (
     <div className={styles.Card}>
@@ -52,36 +53,34 @@ export default function FoodCard({ Food }) {
       <p className={styles.CardDescription}>{Food.dsc}</p>
       {pathname.includes("cart") && <>{Food.quantity} штук</>}
       <div className={styles.CardRow}>
-        {pathname.includes("cart") ?
-        <ButtonGreen
-        
-        onClick={() => {
-          if(isAuth){
-           dispatch(removeCartProduct(Food.id))
-           dispatch(updateCartTotal())
-          }
-          else{
-           router.push("/signIn");
-          }
-         }}>
-{Math.round(Food.price * Food.quantity)} $
-        </ButtonGreen>
-        :<ButtonAccent
-          onClick={() => {
-           if(isAuth){
-            setAddWindowProduct(Food);
-              showAddWindow();
-           }
-           else{
-            router.push("/signIn");
-           }
-          }}
-        >
-          {Math.round(Food.price)} $
-        </ButtonAccent>}
-        
-
-          {Food.rate}⭐️
+        {pathname.includes("cart") ? (
+          <ButtonGreen
+            onClick={() => {
+              if (isAuth) {
+                dispatch(removeCartProduct(Food.id));
+                dispatch(updateCartTotal());
+              } else {
+                router.push("/signIn");
+              }
+            }}
+          >
+            {Math.round(Food.price * Food.quantity)} $
+          </ButtonGreen>
+        ) : (
+          <ButtonAccent
+            onClick={() => {
+              if (isAuth) {
+                setAddWindowProduct(Food);
+                showAddWindow();
+              } else {
+                router.push("/signIn");
+              }
+            }}
+          >
+            {Math.round(Food.price)} $
+          </ButtonAccent>
+        )}
+        {Food.rate}⭐️
       </div>
     </div>
   );

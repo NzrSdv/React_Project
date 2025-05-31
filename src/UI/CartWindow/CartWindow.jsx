@@ -12,14 +12,26 @@ export default function CartWindow() {
   const dispatch = useDispatch();
 
   const Cart = useSelector((state) => state.Cart.cart);
-  const AuthUser = useSelector(state => state.Auth.AuthUser);
+  const AuthUser = useSelector((state) => state.Auth.AuthUser);
 
   useEffect(() => {
-    console.log(Cart)
-  },[Cart])
+    console.log(Cart);
+  }, [Cart]);
   const Product = useSelector((state) => state.Visual.CartWindowProduct);
   const [imageError, setImageError] = useState(false);
   const [quantity, setQuantity] = useState(1);
+
+  function AddCart() {
+    dispatch(addCartProduct({ ...Product, quantity: quantity }));
+    console.log({ ...Product, quantity: quantity });
+    dispatch(setAuthUser({ ...AuthUser, cart: Cart }));
+    localStorage.setItem("cart", JSON.stringify(Cart));
+    localStorage.setItem(
+      "signedUser",
+      JSON.stringify({ ...AuthUser, cart: Cart })
+    );
+    dispatch(toggleCartWindow());
+  }
   return (
     <div className={styles.CartWindow}>
       <div className={styles.WhiteWindow}>
@@ -83,11 +95,7 @@ export default function CartWindow() {
               </ButtonGreen>
               <ButtonAccent
                 onClick={() => {
-                  dispatch(addCartProduct({ ...Product, quantity: quantity }));
-                  console.log({ ...Product, quantity: quantity })
-                  dispatch(toggleCartWindow());
-                  // dispatch(setAuthUser({...AuthUser,cart:Cart}))
-                  localStorage.setItem("signedUser",JSON.stringify({...AuthUser,cart:Cart}))
+                  addCart();
                 }}
               >
                 Добавить

@@ -6,7 +6,7 @@ import FoodList from "@/components/foodList/FoodList";
 import Header from "@/components/header/Header";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCartProduct, resetCart, updateCartTotal } from "../store/CartSlice";
+import { addCartProduct, resetCart, reWriteCartProduct, updateCartTotal } from "../store/CartSlice";
 import ButtonGreen from "@/UI/Buttons/buttonGreen/ButtonGreen";
 import { setCart } from "../store/UserSlice";
 import { useRouter } from "next/navigation";
@@ -21,18 +21,11 @@ export default function Cart() {
   const Users = useSelector((state) => state.User.Users);
 
   useEffect(() => {
-    if (isAuth || JSON.parse(localStorage.getItem("signedUser"))) {
-      dispatch(updateCartTotal());
-      if (JSON.parse(localStorage.getItem("signedUser"))) {
-        dispatch(resetCart());
-        JSON.parse(localStorage.getItem("signedUser")).cart.forEach(
-          (element) => {
-            dispatch(addCartProduct(element));
-          }
-        );
-      }
-    } else {
-      router.push("/");
+    if(isAuth){
+
+    }
+    else{
+      router.push("/")
     }
   }, [isAuth]);
 
@@ -40,13 +33,8 @@ export default function Cart() {
     if (localStorage.getItem("signedUser")) {
       dispatch(setAuthUser(JSON.parse(localStorage.getItem("signedUser"))));
       dispatch(toggleAuth());
-      console.log(Users);
-      console.log(AuthUser);
-      dispatch(setCart({id:AuthUser.id,cart:AuthUser.cart}));
-      // dispatch(setCart({id:Users.findIndex(element => element.email == AuthUser.email),cart:AuthUser.cart}))
     }
   }, []);
-  console.log(Cart);
   return (
     <div
       className={styles.Layout}
@@ -61,7 +49,9 @@ export default function Cart() {
             onClick={() => {
               dispatch(resetCart());
               dispatch(updateCartTotal());
-              dispatch(setCart({ id: AuthUser.id, cart: [] }));
+              dispatch(setCart({ id: AuthUser.id, cart: AuthUser.cart }));
+              localStorage.removeItem("cart")
+              localStorage.setItem("signedUser",JSON.stringify({...AuthUser,cart:[]}))
             }}
           >
             Купить все
