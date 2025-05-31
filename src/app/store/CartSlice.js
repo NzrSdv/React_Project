@@ -12,7 +12,7 @@ const CartSlice = createSlice({
     reducers:{
         addCartProduct:(state,action) => {
             if(state.cart.findIndex((product) => product.id == action.payload.id) == -1){
-                state.cart = [...state.cart,action.payload]
+                state.cart = [...state.cart,action.payload.product]
             }
             else{
                 const NeededIndex = state.cart.findIndex((product) => product.id == action.payload.id)
@@ -29,6 +29,10 @@ const CartSlice = createSlice({
                     state.cartSum += Math.round(product.price * product.quantity);
                 })
             }
+        }
+        ,
+        reWriteCartProduct:(state,action) => {
+            state.cart = [...state.cart,action.payload]
         }
         ,
         updateCartTotal:(state) => {
@@ -51,5 +55,5 @@ const CartSlice = createSlice({
     }
 })
 
-export const {addCartProduct,updateCartTotal,removeCartProduct,resetCart} = CartSlice.actions;
+export const {addCartProduct,updateCartTotal,reWriteCartProduct,removeCartProduct,resetCart} = CartSlice.actions;
 export default CartSlice.reducer;
